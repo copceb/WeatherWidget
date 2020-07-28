@@ -1,3 +1,8 @@
+.weather-component {
+  max-width: 750px;
+  font-family: sans-serif;
+}
+
 .weather-component-grid-wrapper {
   display: grid;
   grid-template-columns: 2fr 1fr;
@@ -12,6 +17,10 @@
     grid-template-rows: 1fr;
     grid-template-areas: "wo" "wd" "wwv";
   }
+  .weather-overview {
+    border-bottom: 1px solid #9c9c9c;
+    border-right: none;
+  }
 }
 
 .weather-overview {
@@ -21,6 +30,8 @@
   grid-template-rows: repeat(2, 1fr);
   align-items: center;
   justify-items: center;
+  padding: 10%;
+  border-right: 1px solid #9c9c9c;
 }
 
 .weather-details {
@@ -30,6 +41,7 @@
   grid-template-rows: repeat(3, 1fr);
   align-items: center;
   justify-items: center;
+  padding: 10%;
 }
 
 .weather-week-view {
@@ -39,10 +51,20 @@
   grid-template-rows: 1fr;
   align-items: center;
   justify-items: center;
+  border-top: 1px solid #9c9c9c;
 }
 
 .weather-week-view > div {
   height: 100%;
   width: 100%;
   text-align: center;
+  padding: 0 10% 10% 10%;
+  box-sizing: border-box;
+}
+
+.day-name {
+  border-bottom: 1px solid #9c9c9c;
+  font-weight: bold;
+  padding: 10%;
+  margin-bottom: 10%;
 }
