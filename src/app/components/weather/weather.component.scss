@@ -14,6 +14,17 @@
   grid-template-areas: "wo wd" "wwv wwv";
 }
 
+.weather-overview {
+  grid-area: wo;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: repeat(2, 1fr);
+  align-items: center;
+  justify-items: center;
+  padding: 10%;
+  border-right: 1px solid #9c9c9c;
+}
+
 @media only screen and (max-width: 600px) {
   .weather-component-grid-wrapper {
     display: grid;
@@ -25,17 +36,6 @@
     border-bottom: 1px solid #9c9c9c;
     border-right: none;
   }
-}
-
-.weather-overview {
-  grid-area: wo;
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  grid-template-rows: repeat(2, 1fr);
-  align-items: center;
-  justify-items: center;
-  padding: 10%;
-  border-right: 1px solid #9c9c9c;
 }
 
 .weather-details {
