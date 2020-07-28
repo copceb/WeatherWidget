@@ -5,11 +5,22 @@
   grid-template-areas: "wo wd" "wwv wwv";
 }
 
+@media only screen and (max-width: 600px) {
+  .weather-component-grid-wrapper {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr;
+    grid-template-areas: "wo" "wd" "wwv";
+  }
+}
+
 .weather-overview {
   grid-area: wo;
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   grid-template-rows: repeat(2, 1fr);
+  align-items: center;
+  justify-items: center;
 }
 
 .weather-details {
@@ -17,11 +28,21 @@
   display: grid;
   grid-template-columns: 1fr;
   grid-template-rows: repeat(3, 1fr);
+  align-items: center;
+  justify-items: center;
 }
 
 .weather-week-view {
   grid-area: wwv;
   display: grid;
-  grid-template-columns: repeat(7, 1fr);
+  grid-template-columns: repeat(auto-fit, minmax(75px, 1fr));
   grid-template-rows: 1fr;
+  align-items: center;
+  justify-items: center;
+}
+
+.weather-week-view > div {
+  height: 100%;
+  width: 100%;
+  text-align: center;
 }
