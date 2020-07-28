@@ -52,7 +52,6 @@ ng e2e
 
 ## Known Issues
 * Task 3 was not completed.Therefore the location is static, and changeable only within the code (`weather.component.ts`).
-* Icons are not displayed, instead only their non-user-friendly identifiers are.
 * There is no programmatic relationship between the place name and the coordinates used to request the weather.
 * The results do not update after an interval, manual refresh is necessary.
 * The free proxy (See CORS Proxy below) used in this project throttles speeds significantly, which can lead to long wait times.
@@ -71,7 +70,7 @@ As previously discussed, this project does not meet the functionality requiremen
 
 When searching for locations, it would also be benefial to cache the previously selected location so that it can be automatically loaded if/when the user chooses to revisit the application.
 
-The design and user experience can be improved significantly, most simply by the introduction of weather icons and the use of an open UI framework such as VMware's [Project Clarity](https://clarity.design/), which would standardise some behaviour and support adherance to best design practices.
+The design and user experience can be improved significantly, the use of an open UI framework such as VMware's [Project Clarity](https://clarity.design/) would standardise some behaviour and support adherance to best design practices.
 
 ### Extendability
 The type of data displayed to the data is currently rigid, displaying only the fields requested in the example application. From a user's perpective it would be beneficial to allow more information from the DarkSky API to be displayed in the UI, such as sunrise and sunset times. This would require an additional interface for the user to manage these preferences, and less rigid JSON validity checking when retrieving the data.
