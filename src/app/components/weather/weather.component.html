@@ -1,69 +1,35 @@
 <div class="weather-component">
-  <button class="refresh-button">Refresh</button>
-  <h3>Dubai, Al Khamila Street, United Arab Emirates</h3>
-  <div class="weather-component-grid-wrapper">
+  <button class="refresh-button" (click)="refreshWeatherReport()" [disabled]="loading">Refresh</button>
+  <h3>1 Cabot Square, Canary Wharf, London</h3>
+  <div *ngIf="loading">Loading data...</div>
+  <div *ngIf="error">Error: {{error}}</div>
+  <div class="weather-component-grid-wrapper" *ngIf="!loading && !error">
     <div class="weather-overview">
-      <div>Sunny</div>
-      <div>Now: 30</div>
-      <div>High: 35</div>
-      <div>Low: 17</div>
+      <div>{{weatherReport.current.icon}}</div>
+      <div>Now: {{weatherReport.current.temperature | number:'1.0-0'}}°</div>
+      <div>High: {{weatherReport.current.temperatureHigh | number:'1.0-0'}}°</div>
+      <div>Low: {{weatherReport.current.temperatureLow | number:'1.0-0'}}°</div>
     </div>
     <div class="weather-details">
       <div>
         <span>Rain: </span>
-        <span>0%</span>
+        <span>{{weatherReport.current.precipProbability * 100}}%</span>
       </div>
       <div>
         <span>Wind: </span>
-        <span>11 kph</span>
+        <span>{{weatherReport.current.windSpeed | number:'1.0-0'}}kph</span>
       </div>
       <div>
         <span>Humidity: </span>
-        <span>43%</span>
+        <span>{{weatherReport.current.humidity * 100}}%</span>
       </div>
     </div>
     <div class="weather-week-view">
-      <div>
-        <div class="day-name">Sat</div>
-        <div>Sunny with Clouds</div>
-        <div>High: 31</div>
-        <div>Low: 18</div>
-      </div>
-      <div>
-        <div class="day-name">Sun</div>
-        <div>Sunny</div>
-        <div>High: 31</div>
-        <div>Low: 18</div>
-      </div>
-      <div>
-        <div class="day-name">Mon</div>
-        <div>Sunny with Clouds</div>
-        <div>High: 31</div>
-        <div>Low: 18</div>
-      </div>
-      <div>
-        <div class="day-name">Tue</div>
-        <div>Sunny with Clouds</div>
-        <div>High: 31</div>
-        <div>Low: 18</div>
-      </div>
-      <div>
-        <div class="day-name">Wed</div>
-        <div>Sunny</div>
-        <div>High: 31</div>
-        <div>Low: 18</div>
-      </div>
-      <div>
-        <div class="day-name">Thu</div>
-        <div>Sunny with Clouds</div>
-        <div>High: 31</div>
-        <div>Low: 18</div>
-      </div>
-      <div>
-        <div class="day-name">Fri</div>
-        <div>Sunny</div>
-        <div>High: 31</div>
-        <div>Low: 18</div>
+      <div *ngFor="let day of weatherReport.week">
+        <div class="day-name">{{day.day}}</div>
+        <div>{{day.icon}}</div>
+        <div>High: {{day.temperatureHigh | number:'1.0-0'}}°</div>
+        <div>Low: {{day.temperatureLow | number:'1.0-0'}}°</div>
       </div>
     </div>
   </div>
