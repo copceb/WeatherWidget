@@ -3,6 +3,10 @@
   font-family: sans-serif;
 }
 
+.refresh-button {
+  float: right;
+}
+
 .weather-component-grid-wrapper {
   display: grid;
   grid-template-columns: 2fr 1fr;
