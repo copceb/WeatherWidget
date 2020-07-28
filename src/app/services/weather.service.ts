@@ -66,6 +66,9 @@ export class WeatherService {
 
     weatherReport['current'] = response['currently'];
     weatherReport['current']['day'] = moment.unix(weatherReport['current']['time']).format('ddd');
+    
+    weatherReport['current']['iconClass'] = this.getIconClass(weatherReport['current']['icon']);
+
     weatherReport['current']['temperatureHigh'] = response['daily']['data'][0]['temperatureHigh'];
     weatherReport['current']['temperatureLow'] = response['daily']['data'][0]['temperatureLow'];
 
@@ -74,11 +77,50 @@ export class WeatherService {
     for (let i = 0; i < weatherReport['week'].length; i++) {
       const dayName = moment.unix(weatherReport['week'][i]['time']).format('ddd');
       weatherReport['week'][i]['day'] = dayName;
+
+      weatherReport['week'][i]['iconClass'] = this.getIconClass(weatherReport['week'][i]['icon']);
     }
 
     // console.log('Trimmed data structure: ', weatherReport);
 
     return weatherReport;
+  }
+
+  /**
+   * Map DarkSky icon identifer to Erik Flowers Weather Icon class name
+   * @param weatherType icon name related to weather scenario provided by DarkSky
+   */
+  private getIconClass(weatherType: string): string {
+    // Initialise icon as N/A symbol for default option
+    let icon = 'wi-na';
+
+    // DarkSky icon names from https://darksky.net/dev/docs
+    // Icon classes from https://erikflowers.github.io/weather-icons/
+
+    switch(weatherType) {
+      case 'clear-day':
+        return 'wi-day-sunny';
+      case 'clear-night':
+        return 'wi-night-clear';
+      case 'rain':
+        return 'wi-rain';
+      case 'snow':
+        return 'wi-snow';
+      case 'sleet':
+        return 'wi-sleet';
+      case 'wind':
+        return 'wi-windy';
+      case 'fog':
+        return 'wi-fog';
+      case 'cloudy':
+        return 'wi-cloudy';
+      case 'partly-cloudy-day':
+        return 'wi-day-cloudy';
+      case 'partly-cloudy-night':
+        return 'wi-night-alt-cloudy';
+      default:
+        return 'wi-na';
+    }
   }
 
 }

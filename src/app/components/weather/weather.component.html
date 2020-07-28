@@ -5,29 +5,31 @@
   <div *ngIf="error">Error: {{error}}</div>
   <div class="weather-component-grid-wrapper" *ngIf="!loading && !error">
     <div class="weather-overview">
-      <div>{{weatherReport.current.icon}}</div>
-      <div>Now: {{weatherReport.current.temperature | number:'1.0-0'}}°</div>
-      <div>High: {{weatherReport.current.temperatureHigh | number:'1.0-0'}}°</div>
-      <div>Low: {{weatherReport.current.temperatureLow | number:'1.0-0'}}°</div>
+      <div>
+        <i class="current-weather-highlight wi" [ngClass]="weatherReport.current.iconClass"></i>
+      </div>
+      <div class="current-weather-highlight">{{weatherReport.current.temperature | number:'1.0-0'}}°</div>
+      <div><i class="wi wi-thermometer"></i> {{weatherReport.current.temperatureHigh | number:'1.0-0'}}°</div>
+      <div><i class="wi wi-thermometer-exterior"></i> {{weatherReport.current.temperatureLow | number:'1.0-0'}}°</div>
     </div>
     <div class="weather-details">
       <div>
-        <span>Rain: </span>
-        <span>{{weatherReport.current.precipProbability * 100}}%</span>
+        <span><i class="wi wi-raindrops"></i></span>
+        <span>{{weatherReport.current.precipProbability * 100 | number:'1.0-0'}}%</span>
       </div>
       <div>
-        <span>Wind: </span>
+        <span><i class="wi wi-direction-right"></i></span>
         <span>{{weatherReport.current.windSpeed | number:'1.0-0'}}kph</span>
       </div>
       <div>
-        <span>Humidity: </span>
-        <span>{{weatherReport.current.humidity * 100}}%</span>
+        <span><i class="wi wi-humidity"></i></span>
+        <span>{{weatherReport.current.humidity * 100 | number:'1.0-0'}}%</span>
       </div>
     </div>
     <div class="weather-week-view">
       <div *ngFor="let day of weatherReport.week">
         <div class="day-name">{{day.day}}</div>
-        <div>{{day.icon}}</div>
+        <div><i class="wi" [ngClass]="day.iconClass"></i></div>
         <div>High: {{day.temperatureHigh | number:'1.0-0'}}°</div>
         <div>Low: {{day.temperatureLow | number:'1.0-0'}}°</div>
       </div>
